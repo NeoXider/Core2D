@@ -22,9 +22,10 @@
       "source": "git",
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6",
-        "com.unity.ai.navigation": "1.1.7"
+        "com.unity.ai.navigation": "1.1.7",
+        "com.unity.render-pipelines.universal": "14.0.12"
       },
-      "hash": "d8812e1c85e353a96583e2491225ac6918f80dc2"
+      "hash": "be466fdce4c8cd5e85e4d84b86643db2afbd2afb"
     },
     "com.unity.2d.animation": {
       "version": "13.0.4",
