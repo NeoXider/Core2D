@@ -26,7 +26,7 @@
         "com.unity.render-pipelines.universal": "14.0.12",
         "com.unity.inputsystem": "1.14.2"
       },
-      "hash": "f942745c2a9097816e33a8cb33ad42cc6b78a182"
+      "hash": "fc912d95c5d99c69300be9d7dda012da77564346"
     },
     "com.postica.binding-system": {
       "version": "file:com.postica.binding-system",
