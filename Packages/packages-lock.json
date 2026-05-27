@@ -23,10 +23,9 @@
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.ai.navigation": "1.1.7",
-        "com.unity.render-pipelines.universal": "14.0.12",
         "com.unity.inputsystem": "1.14.2"
       },
-      "hash": "fc912d95c5d99c69300be9d7dda012da77564346"
+      "hash": "64db0330a2a7e5704888e65b59323095ebffd5e1"
     },
     "com.postica.binding-system": {
       "version": "file:com.postica.binding-system",
@@ -142,6 +141,19 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.ai.inference": {
+      "version": "2.6.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.burst": "1.8.17",
+        "com.unity.dt.app-ui": "1.3.6",
+        "com.unity.collections": "2.4.3",
+        "com.unity.nuget.newtonsoft-json": "3.2.1",
+        "com.unity.modules.imageconversion": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.12",
       "depth": 1,
@@ -171,6 +183,18 @@
         "com.unity.test-framework": "1.4.6",
         "com.unity.nuget.mono-cecil": "1.11.6",
         "com.unity.test-framework.performance": "3.0.3"
+      },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.dt.app-ui": {
+      "version": "2.1.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.physics": "1.0.0",
+        "com.unity.modules.androidjni": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.screencapture": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
