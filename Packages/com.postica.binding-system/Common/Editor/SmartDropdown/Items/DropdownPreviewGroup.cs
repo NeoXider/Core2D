@@ -61,7 +61,7 @@ namespace Postica.Common
                 {
                     icon = AssetPreview.GetAssetPreview(obj);
 
-                    if (!icon && AssetPreview.IsLoadingAssetPreview(obj.GetInstanceID()))
+                    if (!icon && UnityObjectEditorCompat.IsLoadingAssetPreview(obj))
                     {
                         deferredPreview = true;
                         unityObject = obj;
@@ -133,7 +133,7 @@ namespace Postica.Common
         {
             var icon = AssetPreview.GetAssetPreview(unityObject);
             var attempts = 20;
-            while(!icon && AssetPreview.IsLoadingAssetPreview(unityObject.GetInstanceID()) && attempts-- > 0)
+            while(!icon && UnityObjectEditorCompat.IsLoadingAssetPreview(unityObject) && attempts-- > 0)
             {
                 await Task.Delay(50);
                 icon = AssetPreview.GetAssetPreview(unityObject);

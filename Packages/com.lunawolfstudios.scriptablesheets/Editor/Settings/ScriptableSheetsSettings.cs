@@ -199,7 +199,7 @@ namespace LunaWolfStudiosEditor.ScriptableSheets.Settings
 			if (windowSessionStates != null && windowSessionStates.Count > 0)
 			{
 				var windowPosition = window.position.ToString();
-				var instanceId = window.GetInstanceID();
+				var instanceId = ScriptableSheetsEditorWindow.GetWindowInstanceId(window);
 				// First search by instance id and position. We include position here as well because Unity's instance id can be unreliable and change.
 				windowSessionState = windowSessionStates.FirstOrDefault(s => s.InstanceId == instanceId && s.Position == windowPosition);
 				if (windowSessionState == null)
@@ -209,7 +209,7 @@ namespace LunaWolfStudiosEditor.ScriptableSheets.Settings
 					if (windowSessionState == null)
 					{
 						// Find the first window session state that isn't already in use.
-						var activeInstanceIds = new HashSet<int>(ScriptableSheetsEditorWindow.Instances.Select(i => i.GetInstanceID()));
+						var activeInstanceIds = new HashSet<int>(ScriptableSheetsEditorWindow.Instances.Select(ScriptableSheetsEditorWindow.GetWindowInstanceId));
 						windowSessionState = windowSessionStates.FirstOrDefault(s => !activeInstanceIds.Contains(s.InstanceId));
 					}
 				}

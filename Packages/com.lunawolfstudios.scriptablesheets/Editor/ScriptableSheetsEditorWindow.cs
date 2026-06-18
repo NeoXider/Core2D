@@ -23,6 +23,16 @@ namespace LunaWolfStudiosEditor.ScriptableSheets
 	{
 		public static readonly List<ScriptableSheetsEditorWindow> Instances = new List<ScriptableSheetsEditorWindow>();
 
+#if UNITY_6000_3_OR_NEWER
+		internal static int GetWindowInstanceId(ScriptableSheetsEditorWindow window) => unchecked((int)EntityId.ToULong(window.GetEntityId()));
+
+		private int GetWindowInstanceId() => GetWindowInstanceId(this);
+#else
+		internal static int GetWindowInstanceId(ScriptableSheetsEditorWindow window) => window.GetInstanceID();
+
+		private int GetWindowInstanceId() => GetWindowInstanceId(this);
+#endif
+
 		private static readonly Dictionary<Type, MonoScript> s_MonoScriptCache = new Dictionary<Type, MonoScript>();
 
 		private const string JsonExtension = "json";
@@ -188,7 +198,7 @@ namespace LunaWolfStudiosEditor.ScriptableSheets
 		{
 			var windowSession = new WindowSessionState()
 			{
-				InstanceId = GetInstanceID(),
+				InstanceId = GetWindowInstanceId(),
 				Title = titleContent.text,
 				Position = position.ToString(),
 				SelectableSheetAssets = m_SelectableSheetAssets,
@@ -1567,7 +1577,7 @@ namespace LunaWolfStudiosEditor.ScriptableSheets
 			var titleCounts = windowSessionStates.GroupBy(s => s.Title).ToDictionary(g => g.Key, g => g.Count());
 			foreach (var windowSessionState in windowSessionStates)
 			{
-				var isActiveInstance = Instances.Any(i => i.GetInstanceID() == windowSessionState.InstanceId);
+				var isActiveInstance = Instances.Any(i => GetWindowInstanceId(i) == windowSessionState.InstanceId);
 				var friendlyName = titleCounts[windowSessionState.Title] > 1 ? $"{windowSessionState.Title}/{windowSessionState.InstanceId}" : windowSessionState.Title;
 				// Cannot open or delete windows that are open in the Editor.
 				if (isActiveInstance)

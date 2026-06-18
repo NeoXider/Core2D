@@ -422,7 +422,7 @@ namespace AllIn1SpriteShader
 
             if (obj == null) return false;
 
-            path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
+            path = AssetDatabase.GetAssetPath(obj);
 
             if (path.Length > 0)
             {

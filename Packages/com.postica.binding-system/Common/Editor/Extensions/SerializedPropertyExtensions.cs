@@ -39,7 +39,7 @@ namespace Postica.Common
         
         public static string GetViewDataKey(this SerializedProperty property)
         {
-            return property.serializedObject.targetObject.GetInstanceID() + '.' + property.propertyPath;
+            return UnityObjectEditorCompat.GetObjectId(property.serializedObject.targetObject) + '.' + property.propertyPath;
         }
 
         public static FieldInfo GetFieldInfo(this SerializedProperty property)

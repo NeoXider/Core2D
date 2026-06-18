@@ -146,6 +146,21 @@ namespace Postica.BindingSystem
         
         private static void ShowProxyBindingsInHierarchy()
         {
+#if UNITY_6000_3_OR_NEWER
+            EditorApplication.hierarchyWindowItemByEntityIdOnGUI += (entityId, rect) =>
+            {
+                var go = EditorUtility.EntityIdToObject(entityId) as GameObject;
+                if (go == null)
+                {
+                    return;
+                }
+                var rect2 = new Rect(rect.xMax - 16, rect.y, 16, 16);
+                if (go.GetComponent<ProxyBindings>() != null)
+                {
+                    EditorGUI.DrawRect(rect2, Color.red);
+                }
+            };
+#else
             EditorApplication.hierarchyWindowItemOnGUI += (id, rect) =>
             {
                 var go = EditorUtility.InstanceIDToObject(id) as GameObject;
@@ -159,6 +174,7 @@ namespace Postica.BindingSystem
                     EditorGUI.DrawRect(rect2, Color.red);
                 }
             };
+#endif
         }
 
     }

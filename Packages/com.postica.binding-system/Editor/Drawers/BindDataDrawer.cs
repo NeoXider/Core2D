@@ -72,7 +72,7 @@ namespace Postica.BindingSystem
 
         public static void Focus(Object source, string path, bool ping = true)
         {
-            SessionState.SetString(FocusKey, $"{source.GetInstanceID()}:{path}");
+            SessionState.SetString(FocusKey, $"{UnityObjectEditorCompat.GetObjectId(source)}:{path}");
             if(ping)
             {
                 Selection.activeObject = source;
@@ -91,7 +91,7 @@ namespace Postica.BindingSystem
 
             var parts = focus.Split(':');
             if (parts.Length != 2
-                || !int.TryParse(parts[0], out var id) || source.GetInstanceID() != id
+                || !int.TryParse(parts[0], out var id) || UnityObjectEditorCompat.GetObjectId(source) != id
                 || parts[1] != path)
             {
                 return false;

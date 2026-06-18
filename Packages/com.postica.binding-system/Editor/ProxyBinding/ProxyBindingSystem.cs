@@ -905,7 +905,7 @@ namespace Postica.BindingSystem.ProxyBinding
                     {
                         target = cTarget.GetComponent(replacementType);
                     }
-                    var key = $"_{target.GetType().Name}_{target.GetInstanceID()}";
+                    var key = $"_{target.GetType().Name}_{UnityObjectEditorCompat.GetObjectId(target)}";
                     foreach (var view in inspectorsViews.Children())
                     {
                         if (!view.name.EndsWith(key, StringComparison.Ordinal)) continue;
@@ -980,7 +980,7 @@ namespace Postica.BindingSystem.ProxyBinding
 
                 VisualElement GetRootView(Object target)
                 {
-                    var key = $"_{target.GetType().Name}_{target.GetInstanceID()}";
+                    var key = $"_{target.GetType().Name}_{UnityObjectEditorCompat.GetObjectId(target)}";
                     VisualElement candidate = null;
                     foreach (var view in inspectorsViews.Children())
                     {
