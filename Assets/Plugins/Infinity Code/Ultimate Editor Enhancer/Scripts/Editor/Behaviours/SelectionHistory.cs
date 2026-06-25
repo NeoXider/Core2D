@@ -42,13 +42,13 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
 
             _records = new List<SelectionRecord>();
 #if UNITY_6000_3_OR_NEWER
-            if (Selection.entityIds.Length > 0) Add(Selection.entityIds.Select(Compatibility.ToRawId).ToArray());
+            if (Selection.entityIds.Length > 0) Add(Selection.entityIds.Select(Compatibility.GetObjectId).ToArray());
 #else
             if (Selection.instanceIDs.Length > 0) Add(Selection.instanceIDs);
 #endif
         }
 
-        public static void Add(params long[] ids)
+        public static void Add(params int[] ids)
         {
             if (ignoreNextAdd)
             {
@@ -78,13 +78,6 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             index = _records.Count - 1;
         }
 
-#if !UNITY_6000_3_OR_NEWER
-        public static void Add(params int[] ids)
-        {
-            Add(ids.Select(id => (long)id).ToArray());
-        }
-#endif
-
         public static void Clear()
         {
             _records.Clear();
@@ -98,9 +91,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             ignoreNextAdd = true;
 
 #if UNITY_6000_3_OR_NEWER
-            Selection.entityIds = _records[index].ids.Select(Compatibility.FromRawId).ToArray();
+            Selection.entityIds = _records[index].ids.Select(Compatibility.ToEntityId).ToArray();
 #else
-            Selection.instanceIDs = _records[index].ids.Select(id => (int)id).ToArray();
+            Selection.instanceIDs = _records[index].ids;
 #endif
 
             Event.current.Use();
@@ -114,9 +107,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             ignoreNextAdd = true;
 
 #if UNITY_6000_3_OR_NEWER
-            Selection.entityIds = _records[index].ids.Select(Compatibility.FromRawId).ToArray();
+            Selection.entityIds = _records[index].ids.Select(Compatibility.ToEntityId).ToArray();
 #else
-            Selection.instanceIDs = _records[index].ids.Select(id => (int)id).ToArray();
+            Selection.instanceIDs = _records[index].ids;
 #endif
 
             Event.current.Use();
@@ -127,7 +120,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             if (Prefs.selectionHistory)
             {
 #if UNITY_6000_3_OR_NEWER
-                Add(Selection.entityIds.Select(Compatibility.ToRawId).ToArray());
+                Add(Selection.entityIds.Select(Compatibility.GetObjectId).ToArray());
 #else
                 Add(Selection.instanceIDs);
 #endif
@@ -142,9 +135,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
 
             index = newIndex;
 #if UNITY_6000_3_OR_NEWER
-            Selection.entityIds = _records[index].ids.Select(Compatibility.FromRawId).ToArray();
+            Selection.entityIds = _records[index].ids.Select(Compatibility.ToEntityId).ToArray();
 #else
-            Selection.instanceIDs = _records[index].ids.Select(id => (int)id).ToArray();
+            Selection.instanceIDs = _records[index].ids;
 #endif
         }
 
@@ -164,7 +157,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
 
         public class SelectionRecord
         {
-            public long[] ids;
+            public int[] ids;
             public string[] names;
 
             public string GetShortNames()

@@ -81,7 +81,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             return rect;
 #else
 
-            int id = Compatibility.GetObjectId(view);
+            int id = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(view);
             VisualElement el;
             if (rectElements.TryGetValue(id, out el)) return el.contentRect;
 

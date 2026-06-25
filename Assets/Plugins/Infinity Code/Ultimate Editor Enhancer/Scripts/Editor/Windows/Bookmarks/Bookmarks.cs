@@ -496,7 +496,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             {
                 if (item.target is GameObject)
                 {
-                    bool isLoading = Compatibility.IsLoadingAssetPreview(item.target);
+                    bool isLoading = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.IsLoadingAssetPreview(item.target);
                     if (isLoading)
                     {
                         item.preview = EditorResources.prefabTexture;

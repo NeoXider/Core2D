@@ -225,9 +225,9 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             samePositionX = samePositionY = samePositionZ = sameRotationX = sameRotationY = sameRotationZ = sameScaleX = sameScaleY = sameScaleZ = true;
 
 #if UNITY_6000_3_OR_NEWER
-            long[] instanceIDs = Selection.entityIds.Select(Compatibility.ToRawId).ToArray();
+            int[] instanceIDs = Selection.entityIds.Select(Compatibility.GetObjectId).ToArray();
 #else
-            long[] instanceIDs = Selection.instanceIDs.Select(id => (long)id).ToArray();
+            int[] instanceIDs = Selection.instanceIDs;
 #endif
 
             for (int i = 0; i < instanceIDs.Length; i++)

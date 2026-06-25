@@ -1,9 +1,9 @@
 ﻿/*           INFINITY CODE          */
 /*     https://infinity-code.com    */
 
+
 using System;
 using System.Collections.Generic;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -35,7 +35,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             bool sizeChanged = false;
             if (Event.current.type == EventType.Layout && DragAndDrop.objectReferences.Length == 0)
             {
-                int id = Compatibility.GetObjectId(sceneView);
+                int id = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(sceneView);
                 Rect viewRect = SceneViewManager.GetRect(sceneView);
 
                 Rect rect;

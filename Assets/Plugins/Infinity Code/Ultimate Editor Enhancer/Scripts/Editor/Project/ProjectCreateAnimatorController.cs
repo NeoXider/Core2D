@@ -28,7 +28,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ProjectTools
             path = AssetDatabase.GenerateUniqueAssetPath(path);
 
             ProjectWindowUtil.StartNameEditingIfProjectWindowExists(
-                0,
+                EntityId.None,
                 ScriptableObject.CreateInstance<EndNameEdit>(),
                 path,
                 EditorIconContents.animatorController.image as Texture2D,
@@ -52,25 +52,13 @@ namespace InfinityCode.UltimateEditorEnhancer.ProjectTools
             }
         }
 
-        private class EndNameEdit
-#if UNITY_6000_3_OR_NEWER
-            : AssetCreationEndAction
+        private class EndNameEdit : AssetCreationEndAction
         {
-            public override void Action(EntityId entityId, string pathName, string resourceFile)
+            public override void Action(EntityId instanceId, string pathName, string resourceFile)
             {
                 AnimatorController controller = AnimatorController.CreateAnimatorControllerAtPath(pathName);
                 ProjectWindowUtil.ShowCreatedAsset(controller);
             }
         }
-#else
-            : EndNameEditAction
-        {
-            public override void Action(int instanceId, string pathName, string resourceFile)
-            {
-                AnimatorController controller = AnimatorController.CreateAnimatorControllerAtPath(pathName);
-                ProjectWindowUtil.ShowCreatedAsset(controller);
-            }
-        }
-#endif
     }
 }

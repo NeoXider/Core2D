@@ -3,7 +3,6 @@
 
 using System;
 using System.IO;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEngine;
 
@@ -76,7 +75,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
                     if (asset != null)
                     {
-                        if (Compatibility.IsLoadingAssetPreview(asset))
+                        if (InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.IsLoadingAssetPreview(asset))
                         {
                             content.image = EditorResources.prefabTexture;
                             GUI.changed = true;
@@ -84,7 +83,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                         else
                         {
                             content.image = AssetPreview.GetAssetPreview(asset);
-                            if (!Compatibility.IsLoadingAssetPreview(asset))
+                            if (!InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.IsLoadingAssetPreview(asset))
                             {
                                 if (content.image == null)
                                 {

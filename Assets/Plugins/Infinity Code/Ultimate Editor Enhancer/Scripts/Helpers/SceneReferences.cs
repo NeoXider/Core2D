@@ -21,22 +21,16 @@ namespace InfinityCode.UltimateEditorEnhancer
         public List<HierarchyBackground> hierarchyBackgrounds = new List<HierarchyBackground>();
         
         [NonSerialized]
-        private HashSet<int> _bookmarkIDs;
+        private HashSet<EntityId> _bookmarkIDs;
         
-        public HashSet<int> bookmarkIDs
+        public HashSet<EntityId> bookmarkIDs
         {
             get
             {
                 if (_bookmarkIDs == null)
                 {
-                    IEnumerable<int> ids = bookmarks.Where(b => b.target != null).Select(b =>
-#if UNITY_6000_3_OR_NEWER
-                        unchecked((int)EntityId.ToULong(b.target.GetEntityId()))
-#else
-                        b.target.GetInstanceID()
-#endif
-                    );
-                    _bookmarkIDs = new HashSet<int>(ids);
+                    IEnumerable<EntityId> ids = bookmarks.Where(b => b.target != null).Select(b => b.target.GetEntityId());
+                    _bookmarkIDs = new HashSet<EntityId>(ids);
                 }
 
                 return _bookmarkIDs;

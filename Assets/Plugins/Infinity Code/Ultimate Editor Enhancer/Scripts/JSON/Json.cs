@@ -237,7 +237,7 @@ namespace InfinityCode.UltimateEditorEnhancer.JSON
                 if (id != 0)
                 {
 #if UNITY_6000_3_OR_NEWER
-                    cv = UnityEditor.EditorUtility.EntityIdToObject(EntityId.FromULong((ulong)id));
+                    cv = UnityEditor.EditorUtility.EntityIdToObject(EntityId.FromULong(unchecked((ulong)id)));
 #else
                     cv = UnityEditor.EditorUtility.InstanceIDToObject((int)id);
 #endif
@@ -772,7 +772,10 @@ namespace InfinityCode.UltimateEditorEnhancer.JSON
             if (obj.GetType().IsEnum) return new JsonValue(Enum.GetName(obj.GetType(), obj));
             if (obj is Object)
             {
-                if (!includeChildren || !(obj is Component || obj is ScriptableObject)) return new JsonValue(ObjectReferenceId.GetSerializedId(obj as Object));
+                if (!includeChildren || !(obj is Component || obj is ScriptableObject))
+                {
+                    return new JsonValue(unchecked((long)EntityId.ToULong((obj as Object).GetEntityId())));
+                }
             }
 
             if (obj is IDictionary)

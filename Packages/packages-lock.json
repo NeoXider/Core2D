@@ -40,15 +40,10 @@
       "dependencies": {
         "com.unity.textmeshpro": "3.0.6",
         "com.unity.ai.navigation": "1.1.7",
-        "com.unity.inputsystem": "1.14.2"
+        "com.unity.inputsystem": "1.14.2",
+        "com.unity.ugui": "1.0.0"
       },
-      "hash": "a38dfefd50d8de0405e19ee535261bd1de94613f"
-    },
-    "com.postica.binding-system": {
-      "version": "file:com.postica.binding-system",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
+      "hash": "8567515cba31fbb7053840c03a3606508e3c7709"
     },
     "com.unity.2d.animation": {
       "version": "15.1.0",

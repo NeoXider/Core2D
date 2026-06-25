@@ -163,6 +163,7 @@ MonoBehaviour:
   startAdd: 'Level: '
   endAdd: 
   indexOffset: 0
+  _logWarnings: 0
   _timeAnim: 0
   _ease: 6
   _onEnableAnim: 1

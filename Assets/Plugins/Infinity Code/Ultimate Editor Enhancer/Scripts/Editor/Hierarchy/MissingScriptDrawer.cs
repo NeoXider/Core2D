@@ -2,7 +2,6 @@
 /*     https://infinity-code.com    */
 
 using System.Collections.Generic;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEngine;
 
@@ -32,7 +31,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
                 break;
             }
 
-            missingScripts[Compatibility.GetObjectId(gameObject)] = hasMissingScript;
+            missingScripts[InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(gameObject)] = hasMissingScript;
             return hasMissingScript;
         }
         

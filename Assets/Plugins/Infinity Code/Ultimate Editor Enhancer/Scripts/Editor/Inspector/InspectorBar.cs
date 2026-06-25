@@ -221,7 +221,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             if (editor == null || editor.target == null) return;
             if (!Prefs.inspectorBarShowMaterials && editor.target is Material) return;
 
-            int id = Compatibility.GetObjectId(editor.target);
+            int id = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(editor.target);
             ContentWrapper wrapper;
 
             GUIStyle normalStyle = EditorStyles.toolbarButton;
@@ -361,7 +361,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             else s.x = 25;
 
             wrapper.width = s.x;
-            contentCache.Add(Compatibility.GetObjectId(editor.target), wrapper);
+            contentCache.Add(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(editor.target), wrapper);
             return wrapper;
         }
 

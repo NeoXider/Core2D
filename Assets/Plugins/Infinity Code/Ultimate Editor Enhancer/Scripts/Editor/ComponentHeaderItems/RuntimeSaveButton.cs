@@ -74,7 +74,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
             if (target == null) return;
             if (target.gameObject.scene.name == null) return;
 
-            int instanceID = Compatibility.GetObjectId(target);
+            int instanceID = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(target);
             string path = property.propertyPath;
 
             SerializedProperty prop = property.Copy();
@@ -143,7 +143,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
             {
                 do
                 {
-                    savedFields[Compatibility.GetObjectId(component) + FieldSeparator + p.propertyPath] = SerializedPropertyHelper.GetBoxedValue(p.Copy());
+                    savedFields[InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(component) + FieldSeparator + p.propertyPath] = SerializedPropertyHelper.GetBoxedValue(p.Copy());
                 } while (p.NextVisible(true));
             }
 

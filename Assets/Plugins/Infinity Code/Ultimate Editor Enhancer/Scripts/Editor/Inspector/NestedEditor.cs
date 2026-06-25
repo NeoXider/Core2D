@@ -47,7 +47,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             if (!ReorderableListInterceptor.insideList)
             {
                 bool disallow;
-                int id = Compatibility.GetObjectId(property.serializedObject.targetObject) ^ property.propertyPath.GetHashCode();
+                int id = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(property.serializedObject.targetObject) ^ property.propertyPath.GetHashCode();
 
                 if (!disallowCache.TryGetValue(id, out disallow))
                 {

@@ -609,7 +609,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                     {
                         Object asset = AssetDatabase.LoadMainAssetAtPath(assetPath);
                         Selection.activeObject = asset;
-                        Compatibility.PingObject(asset);
+                        InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.PingObject(asset);
                         EditorMenu.Close();
                     });
                 }

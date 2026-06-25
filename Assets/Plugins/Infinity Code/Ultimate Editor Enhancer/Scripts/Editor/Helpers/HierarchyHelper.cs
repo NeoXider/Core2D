@@ -15,7 +15,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             if (selection != null)
             {
-                SceneHierarchyWindowRef.SetExpandedRecursive(window, Compatibility.GetObjectId(selection), true);
+                SceneHierarchyWindowRef.SetExpandedRecursive(window, InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(selection), true);
             }
             else
             {

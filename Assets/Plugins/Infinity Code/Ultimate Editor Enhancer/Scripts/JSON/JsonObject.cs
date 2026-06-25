@@ -69,7 +69,7 @@ namespace InfinityCode.UltimateEditorEnhancer.JSON
             if (value is string || value is bool || value is int || value is long || value is short || value is float || value is double) _table[name] = new JsonValue(value);
             else if (value is UnityEngine.Object)
             {
-                _table[name] = new JsonValue(ObjectReferenceId.GetSerializedId(value as UnityEngine.Object));
+                _table[name] = new JsonValue(unchecked((long)EntityId.ToULong((value as UnityEngine.Object).GetEntityId())));
             }
             else _table[name] = Json.Serialize(value, BindingFlags.Instance | BindingFlags.Public);
         }

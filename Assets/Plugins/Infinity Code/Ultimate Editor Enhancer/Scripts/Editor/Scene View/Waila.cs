@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEngine;
 
@@ -87,7 +86,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             if (view == null) return null;
             
             SceneViewItem r;
-            return sceneViewItems.TryGetValue(Compatibility.GetObjectId(view), out r) ? r : null;
+            return sceneViewItems.TryGetValue(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(view), out r) ? r : null;
         }
 
         public static void Highlight(GameObject go)
@@ -117,7 +116,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
         private static void OnSceneGUI(SceneView view)
         {
             SceneViewItem sceneViewItem = null;
-            sceneViewItems.TryGetValue(Compatibility.GetObjectId(view), out sceneViewItem);
+            sceneViewItems.TryGetValue(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(view), out sceneViewItem);
 
             if (sceneViewItem != null && WindowsHelper.mouseOverWindow != view)
             {
@@ -136,7 +135,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             if (sceneViewItem == null)
             {
                 sceneViewItem = new SceneViewItem();
-                sceneViewItems.Add(Compatibility.GetObjectId(view), sceneViewItem);
+                sceneViewItems.Add(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(view), sceneViewItem);
             }
 
             Event e = Event.current;

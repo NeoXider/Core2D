@@ -164,7 +164,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                     target = component.gameObject;
                 }
                 
-                entry.instanceId = Compatibility.GetObjectId(target);
+                entry.instanceId = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(target);
                 newEntries[countNewEntries++] = entry;
             }
 

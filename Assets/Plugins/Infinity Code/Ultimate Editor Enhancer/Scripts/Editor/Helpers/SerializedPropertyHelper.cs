@@ -199,11 +199,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                     prop.colorValue = json.Deserialize<Color>();
                     break;
                 case SerializedPropertyType.ObjectReference:
-#if UNITY_6000_3_OR_NEWER
-                    prop.objectReferenceValue = Compatibility.EntityIdToObject(json.Value<long>());
-#else
                     prop.objectReferenceValue = json.Value<int>() != 0 ? Compatibility.EntityIdToObject(json.Value<int>()) : null;
-#endif
                     break;
                 case SerializedPropertyType.LayerMask:
                     prop.intValue = json.Value<int>();
@@ -246,11 +242,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                     prop.quaternionValue = json.Deserialize<Quaternion>();
                     break;
                 case SerializedPropertyType.ExposedReference:
-#if UNITY_6000_3_OR_NEWER
-                    prop.exposedReferenceValue = Compatibility.EntityIdToObject(json.Value<long>());
-#else
                     prop.exposedReferenceValue = json.Value<int>() != 0 ? Compatibility.EntityIdToObject(json.Value<int>()) : null;
-#endif
                     break;
                 case SerializedPropertyType.Vector2Int:
                     prop.vector2IntValue = json.Deserialize<Vector2Int>();
@@ -475,7 +467,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                     return Json.Serialize(prop.colorValue);
                 case SerializedPropertyType.ObjectReference:
                     if (prop.objectReferenceValue == null) return new JsonValue(null);
-                    return new JsonValue(Compatibility.GetObjectId(prop.objectReferenceValue));
+                    return new JsonValue(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(prop.objectReferenceValue));
                 case SerializedPropertyType.LayerMask:
                     return new JsonValue(prop.intValue);
                 case SerializedPropertyType.Vector2:
@@ -509,7 +501,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                     return Json.Serialize(prop.quaternionValue);
                 case SerializedPropertyType.ExposedReference:
                     if (prop.exposedReferenceValue == null) return new JsonValue(null);
-                    return new JsonValue(Compatibility.GetObjectId(prop.exposedReferenceValue));
+                    return new JsonValue(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(prop.exposedReferenceValue));
                 case SerializedPropertyType.Vector2Int:
                     return Json.Serialize(prop.vector2IntValue);
                 case SerializedPropertyType.Vector3Int:

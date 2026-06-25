@@ -42,7 +42,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             if (e.type == EventType.Layout)
             {
                 EditorWindow lastHierarchyWindow = SceneHierarchyWindowRef.GetLastInteractedHierarchy();
-                int wid = Compatibility.GetObjectId(lastHierarchyWindow);
+                int wid = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(lastHierarchyWindow);
                 if (!hierarchyWindows.Contains(wid)) InitWindow(lastHierarchyWindow, wid);
                 return;
             }
@@ -61,18 +61,19 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             GUI.DrawTexture(iconRect, texture, ScaleMode.ScaleToFit);
         }
 
-        private static void FirstInit
 #if UNITY_6000_3_OR_NEWER
-            (EntityId entityId, Rect rect)
+        private static void FirstInit(EntityId id, Rect rect)
         {
             EditorApplication.hierarchyWindowItemByEntityIdOnGUI -= FirstInit;
-#else
-            (int id, Rect rect)
-        {
-            EditorApplication.hierarchyWindowItemOnGUI -= FirstInit;
-#endif
             Init();
         }
+#else
+        private static void FirstInit(int id, Rect rect)
+        {
+            EditorApplication.hierarchyWindowItemOnGUI -= FirstInit;
+            Init();
+        }
+#endif
 
         private static Component GetBestComponent(GameObject go)
         {
@@ -160,7 +161,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             Object[] windows = UnityEngine.Resources.FindObjectsOfTypeAll(SceneHierarchyWindowRef.type);
             foreach (EditorWindow window in windows)
             {
-                int wid = Compatibility.GetObjectId(window);
+                int wid = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(window);
                 if (!hierarchyWindows.Contains(wid))
                 {
                     InitWindow(window, wid);
@@ -170,10 +171,12 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
 
         private static void InitWindow(EditorWindow window, int wid)
         {
+            if (window == null) return;
+
             try
             {
                 IMGUIContainer container = window.rootVisualElement.parent.Query<IMGUIContainer>().First();
-                container.onGUIHandler = (() => OnGUIBefore(wid)) + container.onGUIHandler;
+                container.onGUIHandler = (() => OnGUIBefore(window)) + container.onGUIHandler;
                 HierarchyHelper.SetDefaultIconsSize(window);
                 hierarchyWindows.Add(wid);
             }
@@ -183,13 +186,12 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             }
         }
 
-        private static void OnGUIBefore(int wid)
+        private static void OnGUIBefore(EditorWindow window)
         {
             if (!Prefs.hierarchyOverrideMainIcon) return;
             if (Event.current.type != EventType.Layout) return;
 
-            EditorWindow w = Compatibility.EntityIdToObject(wid) as EditorWindow;
-            if (w) HierarchyHelper.SetDefaultIconsSize(w);
+            if (window) HierarchyHelper.SetDefaultIconsSize(window);
         }
         
         internal class CachedTexture

@@ -163,7 +163,7 @@ namespace InfinityCode.UltimateEditorEnhancer.JSON
                 if (t.IsSubclassOf(typeof(UnityEngine.Object)))
                 {
 #if UNITY_6000_3_OR_NEWER
-                    return UnityEditor.EditorUtility.EntityIdToObject(EntityId.FromULong((ulong)(long)_value));
+                    return UnityEditor.EditorUtility.EntityIdToObject(UnityEngine.EntityId.FromULong(unchecked((ulong)(long)_value)));
 #else
                     return UnityEditor.EditorUtility.InstanceIDToObject((int) (long) _value);
 #endif

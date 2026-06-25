@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -18,12 +17,12 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         
         private static void CachePrefabWithComponents(Dictionary<int, Record> tempRecords, GameObject go)
         {
-            tempRecords.Add(Compatibility.GetObjectId(go), new GameObjectRecord(go));
+            tempRecords.Add(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(go), new GameObjectRecord(go));
             Component[] components = go.GetComponents<Component>();
             for (int i = 0; i < components.Length; i++)
             {
                 Component c = components[i];
-                tempRecords.Add(Compatibility.GetObjectId(c), new ComponentRecord(c));
+                tempRecords.Add(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(c), new ComponentRecord(c));
             }
 
             Transform t = go.transform;
@@ -32,7 +31,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         private static void CachePrefabWithoutComponents(Dictionary<int, Record> tempRecords, GameObject go)
         {
-            tempRecords.Add(Compatibility.GetObjectId(go), new GameObjectRecord(go));
+            tempRecords.Add(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(go), new GameObjectRecord(go));
             Transform t = go.transform;
             for (int i = 0; i < t.childCount; i++) CachePrefabWithoutComponents(tempRecords, t.GetChild(i).gameObject);
         }
@@ -130,7 +129,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             for (int i = 0; i < transforms.Length; i++)
             {
                 GameObject go = transforms[i].gameObject;
-                int key = Compatibility.GetObjectId(go);
+                int key = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(go);
 
                 Record r;
 
@@ -160,7 +159,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             for (int i = 0; i < components.Length; i++)
             {
                 Component c = components[i];
-                int key = Compatibility.GetObjectId(c);
+                int key = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(c);
                 Record r = null;
                 if (sceneRecords == null || !sceneRecords.TryGetValue(key, out r)) r = new ComponentRecord(c);
                 else r.UpdateGameObjectName(c.gameObject);
@@ -169,7 +168,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 tempRecords.Add(key, r);
 
                 GameObject go = c.gameObject;
-                key = Compatibility.GetObjectId(go);
+                key = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(go);
 
                 if (!tempRecords.ContainsKey(key))
                 {

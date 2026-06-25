@@ -24,8 +24,8 @@ namespace InfinityCode.UltimateEditorEnhancer
         static HierarchyItemDrawer()
         {
 #if UNITY_6000_3_OR_NEWER
-            EditorApplication.hierarchyWindowItemByEntityIdOnGUI -= OnHierarchyItemGUI;
-            EditorApplication.hierarchyWindowItemByEntityIdOnGUI += OnHierarchyItemGUI;
+            EditorApplication.hierarchyWindowItemByEntityIdOnGUI -= OnHierarchyItemByEntityIdGUI;
+            EditorApplication.hierarchyWindowItemByEntityIdOnGUI += OnHierarchyItemByEntityIdGUI;
 #else
             EditorApplication.hierarchyWindowItemOnGUI -= OnHierarchyItemGUI;
             EditorApplication.hierarchyWindowItemOnGUI += OnHierarchyItemGUI;
@@ -34,29 +34,48 @@ namespace InfinityCode.UltimateEditorEnhancer
         }
 
 #if UNITY_6000_3_OR_NEWER
-        private static void OnHierarchyItemGUI(EntityId entityId, Rect rect)
-#else
-        private static void OnHierarchyItemGUI(int entityId, Rect rect)
-#endif
+        private static void OnHierarchyItemByEntityIdGUI(EntityId id, Rect rect)
+        {
+            OnHierarchyItemGUI(id, rect);
+        }
+
+        private static void OnHierarchyItemGUI(EntityId id, Rect rect)
         {
             if (listeners == null) return;
 
             if (isDirty)
             {
-                listeners.Sort(delegate (Listener i1, Listener i2)
-                {
-                    if (i1.order == i2.order) return 0;
-                    if (i1.order > i2.order) return 1;
-                    return -1;
-                });
-
+                SortListeners();
                 isDirty = false;
             }
 
             lastInteractedHierarchy = SceneHierarchyWindowRef.GetLastInteractedHierarchy();
             searchFilter = SceneHierarchyWindowRef.GetSearchFilter(lastInteractedHierarchy);
-            item.Set(entityId, rect);
+            item.Set(id, rect);
 
+            DrawListeners();
+        }
+#endif
+
+        private static void OnHierarchyItemGUI(int id, Rect rect)
+        {
+            if (listeners == null) return;
+
+            if (isDirty)
+            {
+                SortListeners();
+                isDirty = false;
+            }
+
+            lastInteractedHierarchy = SceneHierarchyWindowRef.GetLastInteractedHierarchy();
+            searchFilter = SceneHierarchyWindowRef.GetSearchFilter(lastInteractedHierarchy);
+            item.Set(id, rect);
+
+            DrawListeners();
+        }
+
+        private static void DrawListeners()
+        {
             foreach (Listener listener in listeners)
             {
                 if (listener.action != null)
@@ -74,6 +93,16 @@ namespace InfinityCode.UltimateEditorEnhancer
             }
 
             isStopped = false;
+        }
+
+        private static void SortListeners()
+        {
+            listeners.Sort(delegate (Listener i1, Listener i2)
+            {
+                if (i1.order == i2.order) return 0;
+                if (i1.order > i2.order) return 1;
+                return -1;
+            });
         }
 
         public static void Register(string id, Action<HierarchyItem> action, float order = 0)

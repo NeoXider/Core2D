@@ -274,7 +274,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         {
             Rect r1 = new Rect(r.x + 6, r.y + 6, 32, 32);
 
-            bool isLoadingAssetPreview = Compatibility.IsLoadingAssetPreview(component);
+            bool isLoadingAssetPreview = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.IsLoadingAssetPreview(component);
             Texture2D texture2D = AssetPreview.GetAssetPreview(component);
             if (texture2D == null)
             {
@@ -345,7 +345,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                     destroyAnyway = true;
                     editor = Editor.CreateEditor(component);
                     TerrainInspectorRef.SetActiveTerrainInspectorInstance(editor);
-                    TerrainInspectorRef.SetActiveTerrainInspector(Compatibility.GetObjectId(editor));
+                    TerrainInspectorRef.SetActiveTerrainInspector(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(editor));
                 }
             }
             else

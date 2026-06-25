@@ -7,7 +7,6 @@ using System.Linq;
 using InfinityCode.UltimateEditorEnhancer.Behaviors;
 using InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions;
 using InfinityCode.UltimateEditorEnhancer.Integration;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
 using UnityEngine;
@@ -177,10 +176,10 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
 
             List<Item> cachedItems;
             if (cache == null) cache = new Dictionary<int, List<Item>>();
-            else if (cache.TryGetValue(Compatibility.GetObjectId(target), out cachedItems)) return cachedItems;
+            else if (cache.TryGetValue(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(target), out cachedItems)) return cachedItems;
             cachedItems = new List<Item>();
             UpdateItems(rect, target, cachedItems);
-            cache.Add(Compatibility.GetObjectId(target), cachedItems);
+            cache.Add(InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(target), cachedItems);
             return cachedItems;
         }
 

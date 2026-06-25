@@ -179,7 +179,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ProjectTools
                 this.path = path;
 
                 Object obj = AssetDatabase.LoadAssetAtPath<Object>(path);
-                instanceID = Compatibility.GetObjectId(obj);
+                instanceID = InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(obj);
             }
 
             public void SetDirty()

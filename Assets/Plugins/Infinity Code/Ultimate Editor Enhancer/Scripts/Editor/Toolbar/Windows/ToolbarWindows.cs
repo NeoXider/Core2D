@@ -110,7 +110,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
                 
                 if (Selection.activeGameObject)
                 {
-                    SceneHierarchyWindowRef.SetExpandedRecursive(newWindow, Compatibility.GetObjectId(Selection.activeGameObject), true);
+                    SceneHierarchyWindowRef.SetExpandedRecursive(newWindow, InfinityCode.UltimateEditorEnhancer.UnityTypes.Compatibility.GetObjectId(Selection.activeGameObject), true);
                 }
                 else
                 {
