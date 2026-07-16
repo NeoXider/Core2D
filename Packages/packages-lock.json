@@ -15,7 +15,7 @@
         "com.unity.nuget.newtonsoft-json": "3.0.2",
         "com.unity.test-framework": "1.1.31"
       },
-      "hash": "dccecd689072dce4c319e15c812006005c68ad0b"
+      "hash": "bd72241ab91c664176091789c9408d676783abec"
     },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
@@ -43,7 +43,7 @@
         "com.unity.inputsystem": "1.14.2",
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "8567515cba31fbb7053840c03a3606508e3c7709"
+      "hash": "fae02d2d3414f92c6668c940cab2232184530903"
     },
     "com.unity.2d.animation": {
       "version": "15.1.0",

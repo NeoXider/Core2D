@@ -32,8 +32,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1850861714661804228}
   - {fileID: 6559326224599534346}
+  - {fileID: 1850861714661804228}
   - {fileID: 2754667803368267910}
   - {fileID: 5979549469708654313}
   - {fileID: 5195493450319292543}
@@ -71,7 +71,6 @@ MonoBehaviour:
   - {fileID: 8112026054863777060}
   startupPage: {fileID: 11400000, guid: cd4ac9bd18859104d94f4065d89f6793, type: 2}
   ignoredPageIds: []
-  closePopupsOnExclusivePageChange: 1
   OnPageChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -96,7 +95,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
